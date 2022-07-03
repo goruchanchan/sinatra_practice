@@ -10,8 +10,11 @@ end
 get '/new' do 
   @title = 'new'
   @content = 'new contnt'
-  redirect to('/about')
   erb :new
+end
+
+post '/new' do
+  redirect to('/about')
 end
 
 get '/about' do 
