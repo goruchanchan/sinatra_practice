@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 get '/' do 
-  @title = 'main'
+  @title = 'TOP'
   @content = 'メモアプリ'
   erb :index
 end
