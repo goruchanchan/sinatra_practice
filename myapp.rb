@@ -7,6 +7,12 @@ get '/' do
   erb :index
 end
 
+get '/new' do 
+  @title = 'new'
+  @content = 'new contnt'
+  erb :new
+end
+
 get '/about' do 
   @title = 'about'
   @content = 'about contnt'
