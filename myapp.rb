@@ -5,16 +5,21 @@ def design_memo  name, content
   "#{name} \n#{content}"
 end
 
-def show_memo_name file_path
-  f = File.new("./public/#{file_path}")
-  f.readline # メモのタイトルは1行目に書くようにしたので1行目を返す
+def open_memo_detail memo_id
+  f = File.new("./public/#{memo_id}.txt")
+  {:id=>memo_id, :name=>f.readline, :content=>f.readline}
+end
+
+def get_memo_num
+  Dir.open('./public/').children.size
 end
 
 def create_memo name, content
-  file_num = Dir.open('./public/').children.size
-  File.open("./public/#{file_num + 1}.txt", mode = "w"){|f|
+  next_memo_id = get_memo_num + 1
+  File.open("./public/#{next_memo_id}.txt", mode = "w"){|f|
     f.write( design_memo(name, content) )
   }
+  next_memo_id
 end
 
 get '/' do 
@@ -28,14 +33,13 @@ get '/new' do
 end
 
 post '/new' do
-  create_memo(params['name'], params['content'])
-  redirect to("/show?name=#{params['name']}&content=#{params['content']}")
+  memo_id = create_memo(params['name'], params['content'])
+  redirect to("/show?id=#{memo_id}")
 end
 
 get '/show' do 
   @title = 'show content'
-  @name = params['name']
-  @content = params['content']
+  @memo = open_memo_detail(params['id'])
   erb :show
 end
 

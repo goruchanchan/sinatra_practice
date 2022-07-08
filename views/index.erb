@@ -3,8 +3,9 @@
 
 <div class="memo">
   <ul>
-    <% Dir.open('./public/').each_child do |item| %>
-      <li><a href="<%= item %>"><%= show_memo_name(item) %></a></li>
+    <% get_memo_num.times do |i| %>
+      <% memo_info = open_memo_detail(i+1) %>
+      <li><a href="/show?id=<%= memo_info[:id] %>"><%= memo_info[:name] %></a></li>
     <% end %>
   </ul>
 </div>
