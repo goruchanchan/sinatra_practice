@@ -8,13 +8,17 @@ end
 
 get '/new' do 
   @title = 'new content'
-  @content = '登録する'
   erb :new
 end
 
 post '/new' do
   @name = params['name']
   @content = params['content']
+
+  File.open("./public/#{@name}.txt", mode = "w"){|f|
+    f.write(@content)
+  }
+
   redirect to("/show?name=#{@name}&content=#{@content}")
 end
 
