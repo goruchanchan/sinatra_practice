@@ -2,7 +2,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 def design_memo  name, content
-  "#{name} #{content}"
+  "#{name} \n#{content}"
+end
+
+def show_memo_name file_path
+  f = File.new("./public/#{file_path}")
+  f.readline # メモのタイトルは1行目に書くようにしたので1行目を返す
 end
 
 def create_memo name, content

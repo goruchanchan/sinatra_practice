@@ -1,9 +1,10 @@
+<% require './myapp.rb' %>
 <h2><div><%= @content %></div></h2>
 
 <div class="memo">
   <ul>
     <% Dir.open('./public/').each_child do |item| %>
-      <li><a href="<%= item %>"><%= item %></a></li>
+      <li><a href="<%= item %>"><%= show_memo_name(item) %></a></li>
     <% end %>
   </ul>
 </div>
