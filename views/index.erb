@@ -1,5 +1,13 @@
 <h2><div><%= @content %></div></h2>
 
+<div class="memo">
+  <ul>
+    <% [1,2,3].each do |item| %>
+      <li><%= item %></li>
+    <% end %>
+  </ul>
+</div>
+
 <form action="/new" method="get">
   <button type="submit">追加</button>
 </form>
