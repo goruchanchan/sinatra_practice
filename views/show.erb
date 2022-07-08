@@ -1,6 +1,12 @@
 <div><%= @memo[:name] %></div>
 <div><%= @memo[:content] %></div>
 
+<form action="/" method="put">
+  <button type="submit">変更</button>
+</form>
+<form action="/" method="delete">
+  <button type="submit">削除</button>
+</form>
 <form action="/" method="get">
   <button type="submit">TOPへ</button>
 </form>

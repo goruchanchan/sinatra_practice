@@ -7,7 +7,10 @@ end
 
 def open_memo_detail memo_id
   f = File.new("./public/#{memo_id}.txt")
-  {:id=>memo_id, :name=>f.readline, :content=>f.readline}
+  name = f.gets
+  content = ""
+  f.read(nil,content)
+  {:id=>memo_id, :name=>name, :content=>content}
 end
 
 def get_memo_num
@@ -43,3 +46,6 @@ get '/show' do
   erb :show
 end
 
+delete '/' do
+  
+end
