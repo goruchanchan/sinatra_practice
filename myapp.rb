@@ -3,24 +3,25 @@ require 'sinatra/reloader'
 
 get '/' do 
   @title = 'TOP'
-  @content = 'メモアプリ'
   erb :index
 end
 
 get '/new' do 
-  @title = 'new'
-  @content = 'new contnt'
+  @title = 'new content'
+  @content = '登録する'
   erb :new
 end
 
 post '/new' do
-  redirect to('/about')
+  @name = params['name']
+  @content = params['content']
+  redirect to("/show?name=#{@name}&content=#{@content}")
 end
 
-get '/about' do 
-  @title = 'about'
-  @content = 'about contnt'
-  @email = 'mail@k.com'
-  erb :about
+get '/show' do 
+  @title = 'show content'
+  @name = params['name']
+  @content = params['content']
+  erb :show
 end
 
