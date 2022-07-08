@@ -1,10 +1,12 @@
-<p><div><%= @memo_info[:name] %></div></p>
+<p>
+<div>
+  <input type="text" name="name" value="<%= @memo_info[:name] %>">
+</div>
+</p>
 
 <p>
-<div class="content">
-  <% @memo_info[:content].split.each do |n| %>
-    <%= n %></br>
-  <% end %>
+<div>
+  <textarea name="content"><%= @memo_info[:content] %></textarea>
 </div>
 </p>
 
@@ -13,9 +15,6 @@
   <button type="submit">変更</button>
 </form>
 
-<form action="/" method="delete">
-  <button type="submit">削除</button>
-</form>
 <form action="/" method="get">
   <button type="submit">TOPへ</button>
 </form>

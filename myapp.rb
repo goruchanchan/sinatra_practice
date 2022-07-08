@@ -30,6 +30,12 @@ get '/' do
   erb :index
 end
 
+put '/edit' do 
+  @title = 'edit'
+  @memo_info = open_memo_detail(params['id'])
+  erb :edit
+end
+
 get '/new' do 
   @title = 'new content'
   erb :new
@@ -42,7 +48,7 @@ end
 
 get '/show' do 
   @title = 'show content'
-  @memo = open_memo_detail(params['id'])
+  @memo_info = open_memo_detail(params['id'])
   erb :show
 end
 
