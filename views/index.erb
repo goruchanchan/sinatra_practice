@@ -2,8 +2,8 @@
 
 <div class="memo">
   <ul>
-    <% [1,2,3].each do |item| %>
-      <li><%= item %></li>
+    <% Dir.open('./public/').each_child do |item| %>
+      <li><a href="<%= item %>"><%= item %></a></li>
     <% end %>
   </ul>
 </div>
@@ -11,3 +11,4 @@
 <form action="/new" method="get">
   <button type="submit">追加</button>
 </form>
+
