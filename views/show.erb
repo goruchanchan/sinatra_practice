@@ -11,7 +11,8 @@
   <button type="submit">変更</button>
 </form>
 
-<form action="/" method="delete">
+<form action="/<%= @memo_info[:id] %>/delete" method="post">
+  <input type="hidden" name="_method" value="DELETE">
   <button type="submit">削除</button>
 </form>
 

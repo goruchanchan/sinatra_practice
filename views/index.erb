@@ -1,8 +1,8 @@
 <% require './myapp.rb' %>
 <div class="memo">
   <ul>
-    <% get_memo_num.times do |i| %>
-      <% memo_info = parse_memo_detail(i+1) %>
+    <% parse_memo_directories.sort.each do |name| %>
+      <% memo_info = parse_memo_detail(name) %>
       <li><a href="/show/<%= memo_info[:id] %>"><%= memo_info[:name] %></a></li>
     <% end %>
   </ul>
