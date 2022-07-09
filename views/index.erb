@@ -1,11 +1,9 @@
 <% require './myapp.rb' %>
-<h2><div><%= @content %></div></h2>
-
 <div class="memo">
   <ul>
     <% get_memo_num.times do |i| %>
-      <% memo_info = open_memo_detail(i+1) %>
-      <li><a href="/show?id=<%= memo_info[:id] %>"><%= memo_info[:name] %></a></li>
+      <% memo_info = parse_memo_detail(i+1) %>
+      <li><a href="/show/<%= memo_info[:id] %>"><%= memo_info[:name] %></a></li>
     <% end %>
   </ul>
 </div>

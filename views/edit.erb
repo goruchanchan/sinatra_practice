@@ -1,16 +1,16 @@
-<p>
-<div>
-  <input type="text" name="name" value="<%= @memo_info[:name] %>">
-</div>
-</p>
+<form action="/new/<%= @memo_info[:id] %>" method="post">
+  <p>
+  <div>
+    <input type="text" name="name" value="<%= @memo_info[:name] %>">
+  </div>
+  </p>
 
-<p>
-<div>
-  <textarea name="content"><%= @memo_info[:content] %></textarea>
-</div>
-</p>
+  <p>
+  <div>
+    <textarea name="content"><%= @memo_info[:content] %></textarea>
+  </div>
+  </p>
 
-<form action="/edit?id=<%= @memo_info[:id] %>" method="post">
   <input type="hidden" name="_method" value="PUT">
   <button type="submit">変更</button>
 </form>

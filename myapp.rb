@@ -1,39 +1,33 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
-def design_memo  name, content
-  "#{name} \n#{content}"
-end
-
-def open_memo_detail memo_id
-  f = File.new("./public/#{memo_id}.txt")
+def parse_memo_detail id
+  f = File.new("./public/#{id}/name.txt")
   name = f.gets
+  f = File.new("./public/#{id}/content.txt")
   content = ""
   f.read(nil,content)
-  {:id=>memo_id, :name=>name, :content=>content}
+  {:id=>id, :name=>name, :content=>content}
 end
 
 def get_memo_num
   Dir.open('./public/').children.size
 end
 
-def create_memo name, content
-  next_memo_id = get_memo_num + 1
-  File.open("./public/#{next_memo_id}.txt", mode = "w"){|f|
-    f.write( design_memo(name, content) )
-  }
-  next_memo_id
+def create_memo_directory
+  id = get_memo_num + 1
+  Dir.mkdir("./public/#{id}", 0777)
+  id 
+end
+
+def write_memo id, name, content
+  IO.write("./public/#{id}/name.txt", "#{name}")
+  IO.write("./public/#{id}/content.txt", "#{content}")
 end
 
 get '/' do 
   @title = 'TOP'
   erb :index
-end
-
-put '/edit' do 
-  @title = 'edit'
-  @memo_info = open_memo_detail(params['id'])
-  erb :edit
 end
 
 get '/new' do 
@@ -42,16 +36,24 @@ get '/new' do
 end
 
 post '/new' do
-  memo_id = create_memo(params['name'], params['content'])
-  redirect to("/show?id=#{memo_id}")
+  id = create_memo_directory
+  write_memo(id, params['name'], params['content'])
+  redirect to("/show/#{id}")
 end
 
-get '/show' do 
+put '/new/:id' do
+  write_memo(params['id'], params['name'], params['content'])
+  redirect to("/show/#{params['id']}")
+end
+
+get '/show/:id' do 
   @title = 'show content'
-  @memo_info = open_memo_detail(params['id'])
+  @memo_info = parse_memo_detail(params['id'])
   erb :show
 end
 
-delete '/' do
-  
+put '/:id/edit' do 
+  @title = 'edit'
+  @memo_info = parse_memo_detail(params['id'])
+  erb :edit
 end

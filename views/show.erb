@@ -1,14 +1,12 @@
 <p><div><%= @memo_info[:name] %></div></p>
 
-<p>
-<div class="content">
+<p><div class="content">
   <% @memo_info[:content].split.each do |n| %>
     <%= n %></br>
   <% end %>
-</div>
-</p>
+</div></p>
 
-<form action="/edit?id=<%= @memo_info[:id] %>" method="post">
+<form action="/<%= @memo_info[:id] %>/edit" method="post">
   <input type="hidden" name="_method" value="PUT">
   <button type="submit">変更</button>
 </form>
@@ -17,5 +15,6 @@
   <button type="submit">削除</button>
 </form>
 <form action="/" method="get">
-  <button type="submit">TOPへ</button>
+  <button>TOPへ</button>
 </form>
+
