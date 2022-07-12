@@ -25,6 +25,10 @@ def write_memo id, name, content
   IO.write("./public/#{id}/content.txt", "#{content}")
 end
 
+def sanitizing_text text
+  text.gsub(/&|<|>|"|'/, '&'=>'&amp;', "<"=>'&lt;', ">"=>'&gt;', "\""=>'&quot;', "'"=>'&#39;')
+end
+
 def delete_memo id
   File.rename("./public/#{id}", "./public/#{id}.del")
 end

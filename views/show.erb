@@ -1,8 +1,8 @@
-<p><div><%= @memo_info[:name] %></div></p>
+<p><div><%= sanitizing_text(@memo_info[:name]) %></div></p>
 
 <p><div class="content">
   <% @memo_info[:content].split.each do |n| %>
-    <%= n %></br>
+    <%= sanitizing_text(n) %></br>
   <% end %>
 </div></p>
 

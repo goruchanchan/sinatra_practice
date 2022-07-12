@@ -1,13 +1,13 @@
 <form action="/new/<%= @memo_info[:id] %>" method="post">
   <p>
   <div>
-    <input type="text" name="name" value="<%= @memo_info[:name] %>">
+    <input type="text" name="name" value="<%= sanitizing_text(@memo_info[:name]) %>">
   </div>
   </p>
 
   <p>
   <div>
-    <textarea name="content"><%= @memo_info[:content] %></textarea>
+    <textarea name="content"><%= sanitizing_text(@memo_info[:content]) %></textarea>
   </div>
   </p>
 

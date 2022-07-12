@@ -1,7 +1,7 @@
 次のメモを削除しました
 
-<p><%=@memo_info[:name]%></p>
-<p><%=@memo_info[:content]%></p>
+<p><%= sanitizing_text(@memo_info[:name]) %></p>
+<p><%= sanitizing_text(@memo_info[:content]) %></p>
 
 <a href="/">
   <button type="button">TOPへ</button>
