@@ -2,11 +2,12 @@
 <html lang="ja">
 <head>
   <mata charset="utf-8">
+  <link rel="stylesheet" href="/css/style.css" />
   <title><%= @title %></title>
 </head>
 <body>
 <% require './myapp.rb' %>
-    <h1>メモアプリ</h1>
-    <div><%= yield %></div>
+  <h1>メモアプリ</h1>
+  <%= yield %>
 </body>
 </html>
